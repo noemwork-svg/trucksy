@@ -13,7 +13,6 @@
     --neon-green: #34D399;
     --text-light: #FFFFFF;
     --text-medium: #FFFFFF;
-    --neon-glow: 0 0 10px #fff, 0 0 30px var(--neon-green), 0 0 50px rgba(52,211,153,0.8), 0 0 80px rgba(52,211,153,0.4);
 }
 
 body {
@@ -44,10 +43,9 @@ header {
 #trucksy-logo span {
     display: inline-block;
     color: #1A1A1A;
-    text-shadow: 0 0 0.3px #000;
+    text-shadow: 0 0 0.5px #000;
     animation: neon-glow 2.5s infinite;
 }
-
 #trucksy-logo span:nth-child(1) { animation-delay: 0s; }
 #trucksy-logo span:nth-child(2) { animation-delay: 0.2s; }
 #trucksy-logo span:nth-child(3) { animation-delay: 0.4s; }
@@ -57,17 +55,13 @@ header {
 #trucksy-logo span:nth-child(7) { animation-delay: 1.2s; }
 
 @keyframes neon-glow {
-    0%, 100% {
-        color: #1A1A1A;
-        text-shadow: 0 0 2px #000;
-    }
-    50% {
+    0%,100% { color:#1A1A1A; text-shadow:0 0 1px #000; }
+    50% { 
         color: var(--neon-green);
-        text-shadow: 
-            0 0 5px var(--neon-green),
-            0 0 10px var(--neon-green),
-            0 0 20px var(--neon-green),
-            0 0 40px var(--neon-green);
+        text-shadow: 0 0 5px var(--neon-green),
+                     0 0 10px var(--neon-green),
+                     0 0 20px var(--neon-green),
+                     0 0 40px var(--neon-green);
     }
 }
 
@@ -86,7 +80,6 @@ header {
 .hero-section { height:65vh; display:flex; align-items:center; padding-top:4rem; border-bottom:1px solid var(--border-color);}
 .hero-title { font-size:3rem; margin-bottom:1.5rem; color: var(--text-light); }
 @media (min-width:1024px){ .hero-title{font-size:4rem;} }
-
 .hero-text { font-size:1.25rem; margin-bottom:2.5rem; color: var(--text-medium); }
 .hero-buttons { display:flex; gap:1rem; }
 
@@ -103,40 +96,60 @@ header {
     padding: 2rem;
     text-align: center;
     border: 1px solid var(--border-color);
-    transition: all 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
 }
 
-/* Neon border effect */
+/* Continuous neon border glow */
 .service-card::before {
-    content: '';
-    position: absolute;
-    top: -2px; left: -2px; right: -2px; bottom: -2px;
-    border: 2px solid var(--neon-green);
-    border-radius: 0.75rem;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
-    box-shadow: 
-        0 0 5px var(--neon-green),
-        0 0 10px var(--neon-green),
-        0 0 20px var(--neon-green),
-        0 0 40px var(--neon-green);
+    content:'';
+    position:absolute;
+    top:-2px; left:-2px; right:-2px; bottom:-2px;
+    border:2px solid var(--neon-green);
+    border-radius:0.75rem;
+    pointer-events:none;
+    opacity:0.6;
+    box-shadow: 0 0 5px var(--neon-green),
+                0 0 10px var(--neon-green),
+                0 0 20px var(--neon-green),
+                0 0 40px var(--neon-green);
+    animation: neon-border-glow 2s infinite alternate;
 }
 
-/* Glow on hover */
-.service-card:hover::before {
-    opacity: 1;
+/* Glow animation for border */
+@keyframes neon-border-glow {
+    0% {
+        box-shadow: 0 0 5px var(--neon-green),
+                    0 0 10px var(--neon-green),
+                    0 0 20px var(--neon-green),
+                    0 0 30px var(--neon-green);
+        opacity: 0.5;
+    }
+    50% {
+        box-shadow: 0 0 10px var(--neon-green),
+                    0 0 20px var(--neon-green),
+                    0 0 30px var(--neon-green),
+                    0 0 50px var(--neon-green);
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0 0 5px var(--neon-green),
+                    0 0 10px var(--neon-green),
+                    0 0 20px var(--neon-green),
+                    0 0 30px var(--neon-green);
+        opacity: 0.5;
+    }
 }
 
-/* Optional: text glow */
+/* Neon glow on service title on hover */
+.service-card .service-title {
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
 .service-card:hover .service-title {
     color: var(--neon-green);
-    text-shadow: 
-        0 0 5px var(--neon-green),
-        0 0 10px var(--neon-green),
-        0 0 15px var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green),
+                 0 0 10px var(--neon-green),
+                 0 0 15px var(--neon-green);
 }
 
 #about{background-color:var(--bg-dark);}
@@ -239,14 +252,3 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
