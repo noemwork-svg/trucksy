@@ -195,14 +195,71 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 <section class="hero-section">
     <div class="container">
-        <h1 class="hero-title">LOAD READY.<br><span class="one-line-text">FAST. RELIABLE.</span></h1>
-        <p class="hero-text">Elevating Pan-Gulf logistics with reliability, speed, and expertise.</p>
+        <h1 class="hero-title">
+            <span class="load-ready-text">LOAD READY.</span><br>
+            <span class="one-line-text">FAST. RELIABLE.</span>
+        </h1>
+
+        <!-- Falling neon load -->
+        <div class="falling-load"></div>
+
         <div class="hero-buttons">
             <a href="#contact" class="button primary">REQUEST QUOTE</a>
             <a href="#services" class="button white-outline">OUR SERVICES</a>
         </div>
     </div>
 </section>
+
+<style>
+.hero-section {
+    position: relative;
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-dark);
+}
+
+/* LOAD READY text */
+.load-ready-text {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--neon-green);
+    text-align: center;
+    display: block;
+    text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+    position: relative;
+    z-index: 2;
+}
+
+/* Neon falling load */
+.falling-load {
+    position: absolute;
+    top: -60px; /* starts above the header */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--neon-green);
+    border-radius: 5px;
+    box-shadow:
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green),
+        0 0 30px var(--neon-green);
+    animation: fallLoad 2s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes fallLoad {
+    0% { top: -60px; opacity: 0; transform: translateX(-50%) rotate(0deg); }
+    30% { opacity: 1; }
+    70% { top: 120px; transform: translateX(-50%) rotate(15deg); }
+    100% { top: 120px; opacity: 0; transform: translateX(-50%) rotate(0deg); }
+}
+</style>
+
 
 <section id="services">
     <div class="container">
@@ -261,5 +318,6 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
 
 
