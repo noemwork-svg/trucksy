@@ -193,11 +193,14 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
     </div>
 </header>
 
-<<section class="hero-section">
+<section class="hero-section">
   <div class="container">
     <h1 class="hero-title">
       <span class="load-ready-text">LOAD READY</span>
-      <span class="cargo-box"></span>
+      <span class="cargo-box">
+        <span class="top-flap"></span>
+        <span class="tape"></span>
+      </span>
       <br>
       <span class="one-line-text">FAST. RELIABLE.</span>
     </h1>
@@ -222,7 +225,6 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   text-align: center;
 }
 
-/* LOAD READY text */
 .load-ready-text {
   font-size: 3rem;
   font-weight: 700;
@@ -232,67 +234,71 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   z-index: 2;
 }
 
-/* Cargo box - realistic carton */
+/* Cargo box */
 .cargo-box {
   display: inline-block;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin-left: 15px;
+  top: -200px;
+  transform-style: preserve-3d;
+  animation: dropCargo 2s ease-out forwards;
+  perspective: 500px;
+}
+
+/* Box sides */
+.cargo-box::before,
+.cargo-box::after {
+  content: '';
+  position: absolute;
   width: 50px;
   height: 50px;
   background: linear-gradient(145deg, #d4a55f, #c68c2d);
   border: 1px solid #b77b26;
   border-radius: 2px;
-  vertical-align: middle;
-  margin-left: 15px;
-  position: relative;
-  top: -200px; /* start above text */
-  z-index: 1;
-  transform: rotate(-10deg);
-  animation: dropCargo 2s ease-out forwards;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-  opacity: 1;
+  top: 0;
+  left: 0;
+  transform-origin: left top;
+}
+.cargo-box::after {
+  transform: rotateY(30deg) skewY(-10deg);
+  background: linear-gradient(145deg, #c68c2d, #b77b26);
 }
 
-/* Carton flaps for realism */
-.cargo-box::before,
-.cargo-box::after {
-  content: '';
+/* Top flap */
+.top-flap {
   position: absolute;
   width: 50px;
   height: 10px;
   background: linear-gradient(145deg, #c68c2d, #b77b26);
   top: 0;
   left: 0;
-}
-.cargo-box::after {
-  transform: rotate(15deg);
+  transform-origin: top left;
+  z-index: 2;
 }
 
-/* Drop animation with slight rotation, horizontal shift, and disappear */
+/* Tape on top */
+.tape {
+  position: absolute;
+  width: 10px;
+  height: 50px;
+  background: #f3d27a;
+  top: 0;
+  left: 20px;
+  transform: rotate(-5deg);
+  z-index: 3;
+}
+
+/* Drop animation with rotation, wobble, and disappear */
 @keyframes dropCargo {
-  0% {
-    top: -200px;
-    transform: rotate(-10deg) translateX(0);
-    opacity: 1;
-  }
-  50% {
-    top: 5px;
-    transform: rotate(5deg) translateX(10px);
-  }
-  70% {
-    top: -2px;
-    transform: rotate(-3deg) translateX(-5px);
-  }
-  90% {
-    top: 0px;
-    transform: rotate(2deg) translateX(3px);
-  }
-  100% {
-    top: 0px;
-    transform: rotate(0deg) translateX(0);
-    opacity: 0; /* disappear after landing */
-  }
+  0% { top: -200px; transform: rotateX(10deg) rotateZ(-10deg) translateX(0); opacity:1; }
+  50% { top: 10px; transform: rotateX(5deg) rotateZ(5deg) translateX(8px); }
+  70% { top: -5px; transform: rotateX(-3deg) rotateZ(-3deg) translateX(-4px); }
+  90% { top: 2px; transform: rotateX(2deg) rotateZ(2deg) translateX(2px); }
+  100% { top: 0px; transform: rotateX(0deg) rotateZ(0deg) translateX(0); opacity:0; }
 }
 
-/* FAST. RELIABLE text same size as LOAD READY */
 .one-line-text {
   font-size: 3rem;
   font-weight: 700;
@@ -301,6 +307,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   margin-top: 10px;
 }
 </style>
+
 
 
 <section id="services">
@@ -360,6 +367,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
 
 
 
