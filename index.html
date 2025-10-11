@@ -70,8 +70,9 @@
     position: relative;
 }
 
+/* Neon flash pulse */
 @keyframes neon-sweep {
-    0% { 
+    0%, 100% { 
         color: #1A1A1A; 
         text-shadow: none;
     }
@@ -83,28 +84,33 @@
         color: #1A1A1A; 
         text-shadow: none;
     }
-    100% { 
-        color: #1A1A1A; 
-        text-shadow: none;
-    }
 }
 
+/* Common animation setup */
 #trucksy-logo span {
     display: inline-block;
     color: inherit;
-    animation: neon-sweep 3s infinite alternate; /* <— added "alternate" for back & forth */
+    animation: neon-sweep 3s linear infinite;
 }
 
-#trucksy-logo span:nth-child(1) { animation-delay: 0.0s; } 
-#trucksy-logo span:nth-child(2) { animation-delay: 0.15s; } 
-#trucksy-logo span:nth-child(3) { animation-delay: 0.3s; } 
-#trucksy-logo span:nth-child(4) { animation-delay: 0.45s; } 
-#trucksy-logo span:nth-child(5) { animation-delay: 0.6s; } 
-#trucksy-logo span:nth-child(6) { animation-delay: 0.75s; } 
-#trucksy-logo span:nth-child(7) { animation-delay: 0.9s; } 
+/* Forward sweep (T → Y) */
+#trucksy-logo span:nth-child(1) { animation-delay: 0s; }
+#trucksy-logo span:nth-child(2) { animation-delay: 0.15s; }
+#trucksy-logo span:nth-child(3) { animation-delay: 0.3s; }
+#trucksy-logo span:nth-child(4) { animation-delay: 0.45s; }
+#trucksy-logo span:nth-child(5) { animation-delay: 0.6s; }
+#trucksy-logo span:nth-child(6) { animation-delay: 0.75s; }
+#trucksy-logo span:nth-child(7) { animation-delay: 0.9s; }
 
-        /* ---------------------------------- */
+/* Reverse sweep (Y → T) */
+#trucksy-logo span {
+    animation-direction: alternate; /* causes direction reversal */
+}
 
+/* Optional: smoother transitions */
+#trucksy-logo span {
+    transition: all 0.2s ease-in-out;
+}
 
         /* --- HERO SECTION STYLES --- */
         .hero-section {
@@ -651,6 +657,7 @@
 </body>
 
 </html>
+
 
 
 
