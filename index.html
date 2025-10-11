@@ -97,9 +97,47 @@ header {
 @media(min-width:768px){ .service-grid{grid-template-columns:repeat(2,1fr);} }
 @media(min-width:1024px){ .service-grid{grid-template-columns:repeat(3,1fr);} }
 
-.service-card { border-radius:0.75rem; background-color:var(--bg-medium); padding:2rem; text-align:center; border:1px solid var(--border-color);}
-.service-title{ font-weight:700; font-size:1.25rem; margin-bottom:0.5rem; color:var(--text-light);}
-.service-description{ color:var(--text-medium); font-size:0.95rem; }
+.service-card {
+    border-radius: 0.75rem;
+    background-color: var(--bg-medium);
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Neon border effect */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border: 2px solid var(--neon-green);
+    border-radius: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    box-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green),
+        0 0 40px var(--neon-green);
+}
+
+/* Glow on hover */
+.service-card:hover::before {
+    opacity: 1;
+}
+
+/* Optional: text glow */
+.service-card:hover .service-title {
+    color: var(--neon-green);
+    text-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green),
+        0 0 15px var(--neon-green);
+}
 
 #about{background-color:var(--bg-dark);}
 .about-text p{color:var(--text-medium);}
@@ -151,7 +189,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
         <div class="service-grid">
             <div class="service-card">
                 <div class="service-title">Road Freight</div>
-                <div class="service-description">Full and partial load services across Bahrain and into KSA.</div>
+                <div class="service-description">Full and partial load services across Pan-Gulf.</div>
             </div>
             <div class="service-card">
                 <div class="service-title">Express Delivery</div>
@@ -201,6 +239,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
 
 
 
