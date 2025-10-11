@@ -15,6 +15,7 @@
     --text-medium: #FFFFFF;
 }
 
+/* Body */
 body {
     margin:0; padding:0;
     font-family: ui-sans-serif, system-ui, sans-serif;
@@ -24,6 +25,7 @@ body {
 
 .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
 
+/* Header */
 header {
     background-color: rgba(38,38,38,0.95);
     backdrop-filter: blur(5px);
@@ -39,20 +41,14 @@ header {
     font-weight:700;
     font-size:3rem;
     display:inline-block;
-}
-#trucksy-logo {
-    font-weight: 900; /* make letters bold */
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
 }
-
 #trucksy-logo span {
     display: inline-block;
     color: #1A1A1A;
-    text-shadow: none; /* remove tiny shadow for sharp text */
+    text-shadow: 0 0 1px #000;
     animation: neon-glow 2.5s infinite;
 }
-
 #trucksy-logo span:nth-child(1) { animation-delay: 0s; }
 #trucksy-logo span:nth-child(2) { animation-delay: 0.2s; }
 #trucksy-logo span:nth-child(3) { animation-delay: 0.4s; }
@@ -62,18 +58,17 @@ header {
 #trucksy-logo span:nth-child(7) { animation-delay: 1.2s; }
 
 @keyframes neon-glow {
-    0%, 100% {
-        color: #1A1A1A;
-        text-shadow: none;
-    }
-    50% {
+    0%,100% { color:#1A1A1A; text-shadow:0 0 1px #000; }
+    50% { 
         color: var(--neon-green);
-        text-shadow: 
-            0 0 2px var(--neon-green),
-            0 0 4px var(--neon-green),
-            0 0 6px var(--neon-green);
+        text-shadow: 0 0 5px var(--neon-green),
+                     0 0 10px var(--neon-green),
+                     0 0 20px var(--neon-green),
+                     0 0 40px var(--neon-green);
     }
 }
+
+/* Nav */
 .nav-links { display:flex; gap:2rem; }
 .nav-links a { color: var(--text-medium); text-decoration:none; font-weight:500; transition:color 0.2s; }
 .nav-links a:hover{color:var(--neon-green);}
@@ -86,15 +81,34 @@ header {
 .button.white-outline { border:1px solid var(--neon-green); background:transparent; color:var(--neon-green);}
 .button.white-outline:hover{background:rgba(52,211,153,0.1); box-shadow:0 0 10px rgba(52,211,153,0.5);}
 
-.hero-section { height:65vh; display:flex; align-items:center; padding-top:4rem; border-bottom:1px solid var(--border-color);}
-.hero-title { font-size:3rem; margin-bottom:1.5rem; color: var(--text-light); }
-@media (min-width:1024px){ .hero-title{font-size:4rem;} }
-.hero-text { font-size:1.25rem; margin-bottom:2.5rem; color: var(--text-medium); }
-.hero-buttons { display:flex; gap:1rem; }
+/* Hero Section */
+.hero-section { height:65vh; display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:1px solid var(--border-color); position: relative; text-align:center; }
+.hero-title { font-size:3rem; margin-bottom:1rem; color: var(--text-light); display:flex; align-items:center; justify-content:center; gap:15px; }
+.one-line-text { font-size:3rem; font-weight:700; color: var(--text-light); }
 
+/* Cargo Box */
+.cargo-box {
+    width:50px; height:50px; position:relative;
+    transform-origin: center bottom;
+    animation: dropRotateSlide 2s ease forwards;
+}
+.cargo-box .front { position:absolute; width:50px; height:50px; background: linear-gradient(145deg,#d2a05d,#b9852d); border:1px solid #9b6d20; border-radius:2px; }
+.cargo-box .side { position:absolute; width:50px; height:50px; background: linear-gradient(145deg,#b9852d,#a76e1d); transform: rotateY(25deg) skewY(-10deg); top:0; left:0; border-radius:2px; }
+.cargo-box .top { position:absolute; width:50px; height:10px; background: linear-gradient(145deg,#b9852d,#a76e1d); top:0; left:0; transform: rotateX(50deg) translateY(-10px); border-radius:2px; }
+.cargo-box .tape { position:absolute; width:10px; height:50px; background:#f3d27a; top:0; left:20px; transform:rotate(-5deg); }
+
+/* Drop + rotate + skit */
+@keyframes dropRotateSlide {
+    0% { transform: translateY(-300px) rotateZ(0deg) translateX(0); opacity:0; }
+    60% { transform: translateY(0px) rotateZ(0deg) translateX(0); opacity:1; }
+    80% { transform: translateY(0px) rotateZ(15deg) translateX(10px); }
+    90% { transform: translateY(0px) rotateZ(-10deg) translateX(18px); }
+    100% { transform: translateY(0px) rotateZ(5deg) translateX(20px); }
+}
+
+/* Services */
 .section-title { font-size:2.25rem; margin-bottom:1rem; color: var(--text-light); text-align:center; }
 .section-subtitle { color: var(--text-medium); text-align:center; margin-bottom:2rem; }
-
 .service-grid { display:grid; gap:2rem; }
 @media(min-width:768px){ .service-grid{grid-template-columns:repeat(2,1fr);} }
 @media(min-width:1024px){ .service-grid{grid-template-columns:repeat(3,1fr);} }
@@ -105,70 +119,41 @@ header {
     padding: 2rem;
     text-align: center;
     border: 1px solid var(--border-color);
+    transition: all 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
 }
-
-/* Continuous neon border glow */
 .service-card::before {
-    content:'';
-    position:absolute;
-    top:-2px; left:-2px; right:-2px; bottom:-2px;
-    border:2px solid var(--neon-green);
-    border-radius:0.75rem;
-    pointer-events:none;
-    opacity:0.6;
-    box-shadow: 0 0 5px var(--neon-green),
-                0 0 10px var(--neon-green),
-                0 0 20px var(--neon-green),
-                0 0 40px var(--neon-green);
-    animation: neon-border-glow 2s infinite alternate;
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border: 2px solid var(--neon-green);
+    border-radius: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    box-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green),
+        0 0 40px var(--neon-green);
 }
+.service-card:hover::before { opacity:1; }
+.service-card:hover .service-title { color: var(--neon-green); text-shadow:0 0 5px var(--neon-green),0 0 10px var(--neon-green),0 0 15px var(--neon-green); }
+.service-title{ font-weight:700; font-size:1.25rem; margin-bottom:0.5rem; color:var(--text-light);}
+.service-description{ color:var(--text-medium); font-size:0.95rem; }
 
-/* Glow animation for border */
-@keyframes neon-border-glow {
-    0% {
-        box-shadow: 0 0 5px var(--neon-green),
-                    0 0 10px var(--neon-green),
-                    0 0 20px var(--neon-green),
-                    0 0 30px var(--neon-green);
-        opacity: 0.5;
-    }
-    50% {
-        box-shadow: 0 0 10px var(--neon-green),
-                    0 0 20px var(--neon-green),
-                    0 0 30px var(--neon-green),
-                    0 0 50px var(--neon-green);
-        opacity: 1;
-    }
-    100% {
-        box-shadow: 0 0 5px var(--neon-green),
-                    0 0 10px var(--neon-green),
-                    0 0 20px var(--neon-green),
-                    0 0 30px var(--neon-green);
-        opacity: 0.5;
-    }
-}
-
-/* Neon glow on service title on hover */
-.service-card .service-title {
-    transition: text-shadow 0.3s ease, color 0.3s ease;
-}
-.service-card:hover .service-title {
-    color: var(--neon-green);
-    text-shadow: 0 0 5px var(--neon-green),
-                 0 0 10px var(--neon-green),
-                 0 0 15px var(--neon-green);
-}
-
+/* About */
 #about{background-color:var(--bg-dark);}
 .about-text p{color:var(--text-medium);}
 .checkmark-icon{color:var(--neon-green); width:20px;height:20px;}
 .checkmark-item{color:var(--text-medium); display:flex; align-items:center; gap:0.5rem; font-weight:500;}
 
+/* Contact */
 #contact{background-color:var(--bg-medium);}
 input,textarea{width:100%; padding:1rem; margin-bottom:1rem; border:1px solid var(--border-color); background-color:var(--bg-light); color:var(--text-medium); border-radius:0.375rem;}
 
+/* Footer */
 footer{background-color:var(--bg-medium); padding:3rem 0; border-top:1px solid var(--border-color); text-align:center;}
 footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 </style>
@@ -193,122 +178,24 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
     </div>
 </header>
 
-<se<section class="hero-section">
-  <div class="container">
-    <h1 class="hero-title">
-      <span class="load-ready-text">LOAD READY</span>
-      <span class="cargo-box">
-        <span class="front"></span>
-        <span class="side"></span>
-        <span class="top"></span>
-        <span class="tape"></span>
-      </span>
-      <br>
-      <span class="one-line-text">FAST. RELIABLE.</span>
-    </h1>
-
-    <div class="hero-buttons">
-      <a href="#contact" class="button primary">REQUEST QUOTE</a>
-      <a href="#services" class="button white-outline">OUR SERVICES</a>
+<section class="hero-section">
+    <div class="container">
+        <h1 class="hero-title">
+            <span class="load-ready-text">LOAD READY</span>
+            <span class="cargo-box">
+                <span class="front"></span>
+                <span class="side"></span>
+                <span class="top"></span>
+                <span class="tape"></span>
+            </span>
+        </h1>
+        <span class="one-line-text">FAST. RELIABLE.</span>
+        <div class="hero-buttons">
+            <a href="#contact" class="button primary">REQUEST QUOTE</a>
+            <a href="#services" class="button white-outline">OUR SERVICES</a>
+        </div>
     </div>
-  </div>
 </section>
-
-<style>
-.hero-section {
-  position: relative;
-  height: 65vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 4rem;
-  border-bottom:1px solid var(--border-color);
-  background-color: var(--bg-dark);
-  text-align: center;
-}
-
-.load-ready-text {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--text-light);
-  vertical-align: middle;
-}
-
-/* Cargo Box Container */
-.cargo-box {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  position: relative;
-  margin-left: 15px;
-  transform-style: preserve-3d;
-  perspective: 500px;
-  animation: dropRotateSlide 2.5s ease-out forwards;
-}
-
-/* Box sides */
-.cargo-box .front, 
-.cargo-box .side, 
-.cargo-box .top {
-  position: absolute;
-  background: linear-gradient(145deg, #d2a05d, #b9852d);
-  border: 1px solid #9b6d20;
-  border-radius: 2px;
-}
-
-.cargo-box .front {
-  width: 50px; height: 50px;
-  top: 0; left: 0;
-  z-index: 2;
-}
-
-.cargo-box .side {
-  width: 50px; height: 50px;
-  top: 0; left: 0;
-  transform: rotateY(25deg) skewY(-10deg);
-  z-index: 1;
-  background: linear-gradient(145deg, #b9852d, #a76e1d);
-}
-
-.cargo-box .top {
-  width: 50px; height: 10px;
-  top: 0; left: 0;
-  transform: rotateX(50deg) translateY(-10px);
-  background: linear-gradient(145deg, #b9852d, #a76e1d);
-  z-index: 3;
-}
-
-/* Tape */
-.cargo-box .tape {
-  position: absolute;
-  width: 10px;
-  height: 50px;
-  background: #f3d27a;
-  top: 0;
-  left: 20px;
-  transform: rotate(-5deg);
-  z-index: 4;
-}
-
-/* Drop + rotate + slide animation */
-@keyframes dropRotateSlide {
-  0% { transform: translateY(-300px) rotateZ(0deg) rotateX(0deg) translateX(0); opacity:1; }
-  60% { transform: translateY(0px) rotateZ(0deg) rotateX(0deg) translateX(0); }
-  70% { transform: translateY(0px) rotateZ(15deg) rotateX(5deg) translateX(10px); }
-  80% { transform: translateY(0px) rotateZ(-10deg) rotateX(-3deg) translateX(18px); }
-  90% { transform: translateY(0px) rotateZ(5deg) rotateX(2deg) translateX(22px); }
-  100% { transform: translateY(0px) rotateZ(0deg) rotateX(0deg) translateX(25px); }
-}
-
-.one-line-text {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--text-light);
-  display: block;
-  margin-top: 10px;
-}
-</style>
-
 
 <section id="services">
     <div class="container">
@@ -367,15 +254,3 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
