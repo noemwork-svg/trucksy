@@ -196,12 +196,11 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 <section class="hero-section">
   <div class="container">
     <h1 class="hero-title">
-      <span class="load-ready-text">LOAD READY.</span><br>
+      <span class="load-ready-text">LOAD READY</span>
+      <span class="cargo-box"></span>
+      <br>
       <span class="one-line-text">FAST. RELIABLE.</span>
     </h1>
-
-    <!-- Falling cargo box -->
-    <div class="falling-cargo"></div>
 
     <div class="hero-buttons">
       <a href="#contact" class="button primary">REQUEST QUOTE</a>
@@ -220,37 +219,32 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   padding-top: 4rem;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--bg-dark);
+  text-align: center;
 }
 
-/* LOAD READY normal text */
+/* LOAD READY text */
 .load-ready-text {
-  font-size: 3rem;
+  font-size: 3rem; /* same as FAST. RELIABLE */
   font-weight: 700;
   color: var(--text-light);
-  text-align: center;
-  display: block;
-  position: relative;
-  z-index: 2;
+  vertical-align: middle;
 }
 
-/* Falling cargo box */
-.falling-cargo {
-  position: absolute;
-  top: -60px; /* starts above header */
-  left: 50%;
-  transform: translateX(-50%);
+/* Cargo box next to text */
+.cargo-box {
+  display: inline-block;
   width: 50px;
   height: 50px;
   background-color: #D9A441; /* carton color */
   border: 2px solid #C6862D;
   border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 15px;
   box-shadow: 0 0 10px #D9A441, 0 0 20px #D9A441, 0 0 30px #D9A441;
-  animation: dropCargo 2s ease-in-out infinite;
-  z-index: 1;
 }
 
-/* Optional: add box stripes to simulate carton */
-.falling-cargo::before {
+/* Optional: stripes on carton box */
+.cargo-box::before {
   content: '';
   position: absolute;
   top: 10px;
@@ -260,12 +254,13 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   background-color: #C6862D;
 }
 
-/* Drop animation */
-@keyframes dropCargo {
-  0% { top: -60px; opacity: 0; transform: translateX(-50%) rotate(0deg); }
-  30% { opacity: 1; }
-  70% { top: 120px; transform: translateX(-50%) rotate(15deg); }
-  100% { top: 120px; opacity: 0; transform: translateX(-50%) rotate(0deg); }
+/* FAST. RELIABLE text same size as LOAD READY */
+.one-line-text {
+  font-size: 3rem; /* match LOAD READY */
+  font-weight: 700;
+  color: var(--text-light);
+  display: block;
+  margin-top: 10px;
 }
 </style>
 
@@ -328,6 +323,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
 
 
 
