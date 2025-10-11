@@ -60,78 +60,33 @@
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Subtle dark shadow */
         }
         .gradient-bg:hover { opacity: 0.85; }
-/* --- TRUCKSY Logo Animation --- */
+* TRUCKSY smooth neon sweep */
 #trucksy-logo {
-    position: relative;
-    display: inline-block;
-    font-size: 5rem;
-    font-weight: 700;
-    color: #1A1A1A;
-    white-space: nowrap;
+  font-size: 5rem;
+  font-weight: 900;
+  background: linear-gradient(
+    90deg,
+    #1A1A1A 0%,
+    #00ff88 25%,
+    #1A1A1A 50%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: neon-sweep 3s linear infinite alternate;
 }
 
-/* Both forward and reverse layers stacked */
-#trucksy-logo .forward,
-#trucksy-logo .reverse {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Base neon flash animation */
+/* Smooth movement of gradient */
 @keyframes neon-sweep {
-    0%, 100% {
-        color: #1A1A1A;
-        text-shadow: none;
-    }
-    10% {
-        color: var(--color-neon-green);
-        text-shadow: var(--color-neon-glow);
-    }
-    20% {
-        color: #1A1A1A;
-        text-shadow: none;
-    }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
 }
-
-/* Each letter flashes at a staggered delay */
-#trucksy-logo .forward span,
-#trucksy-logo .reverse span {
-    display: inline-block;
-    animation: neon-sweep 3s linear infinite;
-}
-
-/* Forward direction (T → Y) */
-#trucksy-logo .forward span:nth-child(1) { animation-delay: 0s; }
-#trucksy-logo .forward span:nth-child(2) { animation-delay: 0.15s; }
-#trucksy-logo .forward span:nth-child(3) { animation-delay: 0.3s; }
-#trucksy-logo .forward span:nth-child(4) { animation-delay: 0.45s; }
-#trucksy-logo .forward span:nth-child(5) { animation-delay: 0.6s; }
-#trucksy-logo .forward span:nth-child(6) { animation-delay: 0.75s; }
-#trucksy-logo .forward span:nth-child(7) { animation-delay: 0.9s; }
-
-/* Reverse direction (Y → T) */
-#trucksy-logo .reverse span:nth-child(1) { animation-delay: 0.9s; }
-#trucksy-logo .reverse span:nth-child(2) { animation-delay: 0.75s; }
-#trucksy-logo .reverse span:nth-child(3) { animation-delay: 0.6s; }
-#trucksy-logo .reverse span:nth-child(4) { animation-delay: 0.45s; }
-#trucksy-logo .reverse span:nth-child(5) { animation-delay: 0.3s; }
-#trucksy-logo .reverse span:nth-child(6) { animation-delay: 0.15s; }
-#trucksy-logo .reverse span:nth-child(7) { animation-delay: 0s; }
-
-/* Show forward for first half of cycle, reverse for second half */
-@keyframes toggle {
-    0%, 49.9% { opacity: 1; }
-    50%, 100% { opacity: 0; }
-}
-
-#trucksy-logo .forward {
-    animation: toggle 6s linear infinite;
-}
-#trucksy-logo .reverse {
-    animation: toggle 6s linear infinite reverse;
-}
-
 /* Center logo on page */
 body {
     display: flex;
@@ -685,6 +640,7 @@ body {
 </body>
 
 </html>
+
 
 
 
