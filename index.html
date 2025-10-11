@@ -217,14 +217,14 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   align-items: center;
   justify-content: center;
   padding-top: 4rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom:1px solid var(--border-color);
   background-color: var(--bg-dark);
   text-align: center;
 }
 
 /* LOAD READY text */
 .load-ready-text {
-  font-size: 3rem; /* same as FAST. RELIABLE */
+  font-size: 3rem;
   font-weight: 700;
   color: var(--text-light);
   vertical-align: middle;
@@ -232,39 +232,58 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   z-index: 2;
 }
 
-/* Cargo box dropping animation */
+/* Cargo box - realistic carton */
 .cargo-box {
   display: inline-block;
   width: 50px;
   height: 50px;
-  background-color: #D9A441; /* carton color */
-  border: 2px solid #C6862D;
-  border-radius: 4px;
+  background: linear-gradient(145deg, #d4a55f, #c68c2d);
+  border: 1px solid #b77b26;
+  border-radius: 2px;
   vertical-align: middle;
   margin-left: 15px;
   position: relative;
-  top: -150px; /* start above text */
+  top: -200px; /* start above text */
   z-index: 1;
+  transform: rotate(-10deg);
   animation: dropCargo 1.5s ease-out forwards;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
 
-/* Drop animation */
+/* Carton flaps for realism */
+.cargo-box::before,
+.cargo-box::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 10px;
+  background: linear-gradient(145deg, #c68c2d, #b77b26);
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+.cargo-box::after {
+  transform: rotate(15deg);
+}
+
+/* Drop animation with rotation and horizontal shift */
 @keyframes dropCargo {
-  0% { top: -150px; }
-  60% { top: 10px; }
-  80% { top: -5px; }
-  100% { top: 0px; }
+  0% { top: -200px; transform: rotate(-10deg) translateX(0); }
+  60% { top: 10px; transform: rotate(5deg) translateX(5px); }
+  80% { top: -5px; transform: rotate(-3deg) translateX(-3px); }
+  100% { top: 0px; transform: rotate(0deg) translateX(0); }
 }
 
 /* FAST. RELIABLE text same size as LOAD READY */
 .one-line-text {
-  font-size: 3rem; /* match LOAD READY */
+  font-size: 3rem;
   font-weight: 700;
   color: var(--text-light);
   display: block;
   margin-top: 10px;
 }
 </style>
+
 
 
 <section id="services">
@@ -324,6 +343,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
 
 
 
