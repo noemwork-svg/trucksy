@@ -193,7 +193,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
     </div>
 </header>
 
-<section class="hero-section">
+<se<section class="hero-section">
   <div class="container">
     <h1 class="hero-title">
       <span class="load-ready-text">LOAD READY</span>
@@ -243,7 +243,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   margin-left: 15px;
   transform-style: preserve-3d;
   perspective: 500px;
-  animation: dropSlideCargo 2.5s ease-out forwards;
+  animation: dropRotateSlide 2.5s ease-out forwards;
 }
 
 /* Box sides */
@@ -290,13 +290,14 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   z-index: 4;
 }
 
-/* Drop + slide animation */
-@keyframes dropSlideCargo {
-  0% { transform: translateY(-250px) rotateZ(-20deg) rotateX(5deg) translateX(0); opacity:1; }
-  50% { transform: translateY(20px) rotateZ(10deg) rotateX(-5deg) translateX(15px); }
-  70% { transform: translateY(-10px) rotateZ(-5deg) rotateX(3deg) translateX(25px); }
-  85% { transform: translateY(5px) rotateZ(2deg) rotateX(-2deg) translateX(22px); }
-  100% { transform: translateY(0px) rotateZ(0deg) rotateX(0deg) translateX(25px); opacity:1; }
+/* Drop + rotate + slide animation */
+@keyframes dropRotateSlide {
+  0% { transform: translateY(-300px) rotateZ(0deg) rotateX(0deg) translateX(0); opacity:1; }
+  60% { transform: translateY(0px) rotateZ(0deg) rotateX(0deg) translateX(0); }
+  70% { transform: translateY(0px) rotateZ(15deg) rotateX(5deg) translateX(10px); }
+  80% { transform: translateY(0px) rotateZ(-10deg) rotateX(-3deg) translateX(18px); }
+  90% { transform: translateY(0px) rotateZ(5deg) rotateX(2deg) translateX(22px); }
+  100% { transform: translateY(0px) rotateZ(0deg) rotateX(0deg) translateX(25px); }
 }
 
 .one-line-text {
@@ -307,8 +308,6 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   margin-top: 10px;
 }
 </style>
-
-
 
 
 <section id="services">
@@ -368,6 +367,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
 
 
 
