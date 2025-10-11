@@ -193,7 +193,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
     </div>
 </header>
 
-<section class="hero-section">
+<<section class="hero-section">
   <div class="container">
     <h1 class="hero-title">
       <span class="load-ready-text">LOAD READY</span>
@@ -246,8 +246,9 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   top: -200px; /* start above text */
   z-index: 1;
   transform: rotate(-10deg);
-  animation: dropCargo 1.5s ease-out forwards;
+  animation: dropCargo 2s ease-out forwards;
   box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  opacity: 1;
 }
 
 /* Carton flaps for realism */
@@ -260,18 +261,35 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   background: linear-gradient(145deg, #c68c2d, #b77b26);
   top: 0;
   left: 0;
-  transform-origin: top left;
 }
 .cargo-box::after {
   transform: rotate(15deg);
 }
 
-/* Drop animation with rotation and horizontal shift */
+/* Drop animation with slight rotation, horizontal shift, and disappear */
 @keyframes dropCargo {
-  0% { top: -200px; transform: rotate(-10deg) translateX(0); }
-  60% { top: 10px; transform: rotate(5deg) translateX(5px); }
-  80% { top: -5px; transform: rotate(-3deg) translateX(-3px); }
-  100% { top: 0px; transform: rotate(0deg) translateX(0); }
+  0% {
+    top: -200px;
+    transform: rotate(-10deg) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    top: 5px;
+    transform: rotate(5deg) translateX(10px);
+  }
+  70% {
+    top: -2px;
+    transform: rotate(-3deg) translateX(-5px);
+  }
+  90% {
+    top: 0px;
+    transform: rotate(2deg) translateX(3px);
+  }
+  100% {
+    top: 0px;
+    transform: rotate(0deg) translateX(0);
+    opacity: 0; /* disappear after landing */
+  }
 }
 
 /* FAST. RELIABLE text same size as LOAD READY */
@@ -283,7 +301,6 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
   margin-top: 10px;
 }
 </style>
-
 
 
 <section id="services">
@@ -343,6 +360,7 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
 
 
 
