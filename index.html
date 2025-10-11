@@ -179,23 +179,48 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 </header>
 
 <section class="hero-section">
-    <div class="container">
-        <h1 class="hero-title">
-            <span class="load-ready-text">LOAD READY</span>
-            <span class="cargo-box">
-                <span class="front"></span>
-                <span class="side"></span>
-                <span class="top"></span>
-                <span class="tape"></span>
-            </span>
-        </h1>
-        <span class="one-line-text">FAST. RELIABLE.</span>
-        <div class="hero-buttons">
-            <a href="#contact" class="button primary">REQUEST QUOTE</a>
-            <a href="#services" class="button white-outline">OUR SERVICES</a>
-        </div>
-    </div>
+  <div class="container">
+    <h1 class="hero-title">
+      LOAD READY.<br><span class="one-line-text">FAST. RELIABLE.</span>
+      <span class="crate" aria-hidden="true"></span>
+    </h1>
+  </div>
 </section>
+
+<style>
+/* Crate/Pallet animation */
+.crate {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #8B5E3C, #A67C52); /* wooden crate colors */
+    border: 2px solid #6B4A30; /* wooden edges */
+    border-radius: 3px;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.4);
+    margin-left: 15px;
+    vertical-align: middle;
+    transform-origin: bottom center;
+    animation: drop-crate 2s forwards;
+}
+
+@keyframes drop-crate {
+    0% {
+        transform: translateY(-150px) rotate(0deg);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(0px) rotate(20deg) translateX(5px); /* first touch and rotate */
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(-10px) rotate(10deg) translateX(10px); /* slight bounce and slide */
+    }
+    100% {
+        transform: translateY(0px) rotate(15deg) translateX(15px); /* final resting position */
+        opacity: 0; /* disappear after landing */
+    }
+}
+</style>
 
 <section id="services">
     <div class="container">
@@ -254,3 +279,4 @@ footer .footer-text{color:var(--text-medium); margin-top:1rem;}
 
 </body>
 </html>
+
